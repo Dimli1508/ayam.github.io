@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Secure Customer Portal</title>
+</head>
+<body>
+
+  <h1>Secure Customer Portal</h1>
+  
+  <p>Only letters and numbers allowed for username and password.</p>
+  
+  <form id="loginForm">
+    <input type="text" name="username" placeholder="Username" required autofocus></br>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit" name="login">Login</button>
+  </form>
+
+  <script src="secure.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form from submitting the default way
+      
+      var username = document.querySelector('input[name="username"]').value;
+      var password = document.querySelector('input[name="password"]').value;
+      
+      var redirectUrl = validateLogin(username, password);
+      
+      if (redirectUrl === 'login.html' && (username !== 'admin' || password !== 'admin')) {
+        alert('Invalid username or password');
+      }
+      
+      window.location.href = redirectUrl;
+    });
+  </script>
+</body>
+</html>
